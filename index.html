@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leo</title>
+    <style>
+        table {border-collapse :collapse;margin-bottom: 30px;}
+        th,td {border: 1px solid #ccc ; padding: 8px 12px; text-align: left;}
+        th{background: #f0f0f0 ;}
+    </style>
+</head>
+<body>
+    <h1>Autor</h1>
+    <table id="tabela-autor">
+        
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>nome</th>
+                <th>email</th>
+                <th>bio</th>
+            </tr>
+        </thead>
+    </table>
+    <script>
+        const API_URL = "localhost:8000" 
+        async function  autor(){
+            const resposta = await fetch(`${API_URL}/autor`);
+            const corpo = document.querySelector("#tabela-autor")
+            corpo.innerHTML ="";
+            autor.forEach(i =>{
+                corpo.innerHTML += <tr><td>${i.registro_autor}</td>   <td>${i.nome}</td> <td>${i.email}</td>  <td>${i.bio}</td>   </tr>
+            })
+        }
+            
+        autor()
+    </script>
+</body>
+</html>

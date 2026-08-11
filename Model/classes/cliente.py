@@ -6,7 +6,7 @@ base = declarative_base()
 
 
 class Cliente (base):
-    __cliente__ = "cliente"
+    __tablename__ = "cliente"
     cpf = Column(Integer, primary_key = True, index = True)
     nome = Column(String(100),nullable=False)
     email = Column(String(100),nullable=False)

@@ -4,11 +4,11 @@ from sqlalchemy.orm import declarative_base
 base = declarative_base()
 
 class Autor (base):
-    __cliente__ = "cliente"
+    __tablename__ = "autor"
     registro_autor = Column (Integer, primary_key=True, index = True)
     nome = Column(String,nullable=True)
     email = Column (String, nullable=True)
-    biografia = Column(String, nullable=True)
+    bio = Column(String, nullable=True)
 
 
 

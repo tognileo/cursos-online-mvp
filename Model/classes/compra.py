@@ -1,16 +1,17 @@
-from sqlalchemy import Column, Integer,String,Date
+from sqlalchemy import Column, Integer,String,Date,Numeric
 from sqlalchemy.orm import  declarative_base
+
 
 base = declarative_base()
 
 
-class Compra (base):
-    __compra__ = "compra"
-    registro_compra = Column (Integer,prymary_key = True, index = True)
-    data_compra = Column (Date(100),nullable = False)
-    descricao = Column (String(100),nullable=False)
-
-     
+class Compra(base):
+    __tablename__ = "compra"
+    registro_compra = Column(Integer, primary_key=True, index=True)
+    cpf = Column(String(11), nullable=False)
+    data_compra = Column(Date, nullable=False)
+    valor_total = Column(Numeric(10, 2), nullable=False)
+    status = Column(String(50), nullable=False)
 
 
 

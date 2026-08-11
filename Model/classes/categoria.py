@@ -5,7 +5,7 @@ Base = declarative_base()
 
 
 class Categoria(Base):
-    __categoria__ = "categoria"
+    __tablename__ = "categoria"
     n_categoria = Column(Integer, primary_key = True, index = True)
     nome = Column(String(100),nullable=False)
     descricao = Column (String(100),nullable=False)

@@ -1,4 +1,5 @@
 from database import session_local
+from datetime import date
 from categoria import Categoria
 from autor import Autor
 from cliente import Cliente
@@ -7,44 +8,46 @@ from curso import Curso
 from iten_compra import Iten_compra
 session = session_local()
 def categoria ():
-    nova_categoria = Categoria(n_categoria = 3453, nome= "curso de slkjdfghloisa",descricao = "aprnde: dsafjas"  )
+    nova_categoria = Categoria( nome= "curso de kjdfghloisa",descricao = "aprnd dsafjas"  )
     session.add(nova_categoria)
     session.commit()
     print("inserido com sucesso")
 
 def autor ():
-    novo_autor = Autor(registro_autor = 45, nome = "fernado" , email="fernando@gmail.com",biografia = "me chamo fernado sou formado em kasdfjç")
+    novo_autor = Autor(registro_autor = 45, nome = "fernado" , email="fernando@gmail.com",bio = "me chamo fernado sou formado em kasdfjç")
     session.add(novo_autor)
     session.commit()
     print("autor adicionado com sucesso")
 
 def cliente ():
-    novo_cliente = Cliente (cpf= 4002.8922, nome ="yudi",email="yudi@gmail.com", data_cadastro= 2/2/2)
+    novo_cliente = Cliente(cpf="40028922000", nome="yudi", email="yudi@gmail.com", senha="34324", data_cadastro=date(2025, 2, 2))
     session.add(novo_cliente)
     session.commit()
     print("cliente adicionado com sucesso")
 
 def compra ():
-    nova_compra = Compra (registro_compra = "5", data_compra = 2/2/2, descricao ="curso de java, curso de python")
+    nova_compra = Compra(cpf="40028922000", data_compra=date(2025, 2, 2), valor_total=199.90, status="pendente")
     session.add(nova_compra)
     session.commit()
     print("compra adicionada com sucesso")
 
 def curso ():
-    novo_cusro = Curso(n_cadastro = 5, titulo = "cruso de python para iniciantes", descricao ="aprende poo e banco de dados",preco= 15.45, carga_horaria = "60 horas")
-    session.add (novo_cusro)
+    novo_curso = Curso(n_cadastro=5, n_categoria=1, registro_autor=45, titulo="curso de python para iniciantes", descricao="aprende poo e banco de dados", preco=15.45, carga_horaria="60 horas", status="ativo")
+    session.add (novo_curso)
     session.commit()
     print("curso adicionado com sucesso")
 
 def iten_compra():
-    novo_iten_compra = Iten_compra(codigo_barra = 4325432, preco = 545.99)
-    session.add (iten_compra)
+    novo_iten_compra = Iten_compra(registro_compra=5, n_cadastro=5, preco_pago=545.99)
+    session.add(novo_iten_compra)
     session.commit()
-    print("curso iten compra com sucesso")
+    print("item de compra adicionado com sucesso")
 
-
+    
+iten_compra()
 
 session.close()
+
 
 
 
