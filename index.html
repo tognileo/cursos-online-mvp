@@ -12,8 +12,7 @@
 </head>
 <body>
     <h1>Autor</h1>
-    <table id="tabela-autor">
-        
+    <table id="tabela-autor">   
         <thead>
             <tr>
                 <th>ID</th>
@@ -24,17 +23,32 @@
         </thead>
     </table>
     <script>
-        const API_URL = "localhost:8000" 
+        const API_URL = "http://localhost:8000" 
         async function  autor(){
             const resposta = await fetch(`${API_URL}/autor`);
+            //const é um jeito de criar uma variavel. significa que nao da de musar a variavel depois.
+            // await serve para esperar o fetch terminar de executar antes de prosseguir. se nao dentro de resposta fica um valor incompleto 
+            //fetch serve para buscar algo. no caso esta buscando dentro de localhost:8000/autor
+            const dados = await resposta.json();
+            //transforma os dados da resposta que esta como texto em .jason formato  [ {registro_autor: 1, nome: "..."}, {...}, ... ] (negocio só entende nesse formato)
             const corpo = document.querySelector("#tabela-autor")
-            corpo.innerHTML ="";
-            autor.forEach(i =>{
-                corpo.innerHTML += <tr><td>${i.registro_autor}</td>   <td>${i.nome}</td> <td>${i.email}</td>  <td>${i.bio}</td>   </tr>
+            //document.querySelector("#tabela-autor") vasculha toda a pagina html procurando tabela-autor que no caso esta na linha 15
+            dados.innerHTML ="";
+            dados.forEach(i =>{
+                corpo.innerHTML += `<tr>
+                    <td>${i.registro_autor}</td>  
+                    <td>${i.nome}</td> 
+                    <td>${i.email}</td>  
+                    <td>${i.bio}</td>   
+                    </tr>`
             })
         }
             
         autor()
     </script>
 </body>
+
+
 </html>
+
+
