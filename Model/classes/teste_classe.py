@@ -14,7 +14,7 @@ def categoria ():
     print("inserido com sucesso")
 
 def autor ():
-    novo_autor = Autor(registro_autor = 45, nome = "fernado" , email="fernando@gmail.com",bio = "me chamo fernado sou formado em kasdfjç")
+    novo_autor = Autor(registro_autor = 3434, nome = "fdgd" , email="sdgsd@gmsdfgail.com",bio = "mesdfgschamo fernado sou formado em kasdfjç")
     session.add(novo_autor)
     session.commit()
     print("autor adicionado com sucesso")
@@ -44,7 +44,6 @@ def iten_compra():
     print("item de compra adicionado com sucesso")
 
     
-iten_compra()
 
 session.close()
 

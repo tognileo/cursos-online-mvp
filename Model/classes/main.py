@@ -1,16 +1,21 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from database import session_local
+from cliente import Cliente
+from autor import Autor
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/cliente")
 def cliente_rota():
-    return {
-        "cpf": "1",
-        "nome": "João Silva",
-        "email": "joao@email.com",
-        "senha": "123456",
-        "data_cadastro": "2026-07-20"
-    }
+    session = session_local()
+    cliente = session.query(cliente).all()
+    resultado = [{""}]
 
 
 @app.get("/compra")
@@ -50,13 +55,13 @@ def curso_rota():
 
 @app.get("/autor")
 def autor_rota():
-    return {
-        "registro_autor": "1",
-        "nome": "Maria Souza",
-        "email": "maria@email.com",
-        "bio": "Especialista em produtividade e gestão do tempo."
-    }
-
+    session = session_local()
+    autor = session.query(Autor).all()
+    resultado = [{"id":i.registro_autor,
+                  "nome":i.nome,
+                  "email":i.email,
+                  "biografia":i.bio} for i in autor]
+    return resultado
 
 @app.get("/categoria")
 def categoria_rota():
