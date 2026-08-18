@@ -64,24 +64,22 @@
         }
         
 
-        async function  categoria(){
-            const resposta = await fetch (`${API_URL}/categoria`);
+        async function funcao_categoria(){
+            const resposta = await fetch(`${API_URL}/categoria`);
             const dados = await resposta.json();
-            const corpo = document.querySelector("#n_categoria")
-            dados.innerHTML ="";
-            for (let i = 0; i < categoria.length; i++) {
-            const categoria = categoria[i];
-            dados.forEach(i=>{
+            const corpo = document.querySelector("#n_categoria");
+            dados.forEach(i => {
                 corpo.insertAdjacentHTML("beforeend", `<tr>
-                    <td>${i.n_categoria}</td>  
+                    <td>${i.id}</td>  
                     <td>${i.nome}</td> 
                     <td>${i.descricao}</td>  
                     </tr>`
                 );
-            })
-            console.log(categoria[i])
-        }}
-        categoria() 
+            });
+        }
+
+        autor();
+        funcao_categoria();
         
     </script>
 </body>
