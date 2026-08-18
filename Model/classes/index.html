@@ -11,6 +11,7 @@
     </style>
 </head>
 <body>
+
     <h1>Autor</h1>
     <table id="tabela-autor">   
         <thead>
@@ -22,8 +23,26 @@
             </tr>
         </thead>
     </table>
+
+
+    <h1>categoria</h1>
+    <table id="n_categoria">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>nome</th>
+                <th>descricao</th>
+            </tr>
+        </thead>
+
+    </table>
+
+
+
     <script>
         const API_URL = "http://localhost:8000" 
+
+
         async function  autor(){
             const resposta = await fetch(`${API_URL}/autor`);
             //const é um jeito de criar uma variavel. significa que nao da de musar a variavel depois.
@@ -43,8 +62,26 @@
                     </tr>`
             })
         }
-            
-        autor()
+        
+
+        async function  categoria(){
+            const resposta = await fetch (`${API_URL}/categoria`);
+            const dados = await resposta.json();
+            const corpo = document.querySelector("#n_categoria")
+            dados.innerHTML ="";
+            for (let i = 0; i < categoria.length; i++) {
+            const categoria = categoria[i];
+            dados.forEach(i=>{
+                corpo.insertAdjacentHTML("beforeend", `<tr>
+                    <td>${i.n_categoria}</td>  
+                    <td>${i.nome}</td> 
+                    <td>${i.descricao}</td>  
+                    </tr>`
+                );
+            })
+            console.log(categoria[i])
+        }}
+        categoria() 
         
     </script>
 </body>

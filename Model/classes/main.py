@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from database import session_local
-from cliente import Cliente
+
 from autor import Autor
+from categoria import Categoria
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -13,9 +14,7 @@ app.add_middleware(
 
 @app.get("/cliente")
 def cliente_rota():
-    session = session_local()
-    cliente = session.query(cliente).all()
-    resultado = [{""}]
+    return
 
 
 @app.get("/compra")
@@ -65,11 +64,17 @@ def autor_rota():
 
 @app.get("/categoria")
 def categoria_rota():
-    return {
-        "n_categoria": "1",
-        "nome": "Produtividade",
-        "descricao": "Cursos voltados para organização e desempenho."
-    }
+    session = session_local()
+    categoria = session.query(Categoria).all()
+    resultado = [{"id":i.n_categoria,
+                  "nome":i.nome,
+                  "descricao":i.descricao} for i in categoria]
+    return resultado
+
+
+autor_rota()
+
+categoria_rota()
 
 
 
